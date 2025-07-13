@@ -2,7 +2,7 @@
 const typewriterText = document.getElementById('typewriter-text');
 const texts = [
     "C++ Developer",
-    "Exploring AI using Python",
+    "Exploring AI & ML using Python",
     "Passionate about Game Development"
     
 ];
