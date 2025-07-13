@@ -1,9 +1,10 @@
 // Typewriter Effect
 const typewriterText = document.getElementById('typewriter-text');
 const texts = [
-    "A C++ Developer.",
-    "Passionate about Game Development.",
-    "Exploring AI and Python."
+    "C++ Developer",
+    "Exploring AI using Python",
+    "Passionate about Game Development"
+    
 ];
 let textIndex = 0;
 let charIndex = 0;
