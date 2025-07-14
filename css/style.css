@@ -1,5 +1,6 @@
 /* Basic Reset & Global Styles */
 :root {
+    /* Light Mode Colors */
     --primary-color: #1a73e8; /* A vibrant, attractive blue */
     --secondary-color: #6c757d; /* Grey for secondary text */
     --background-color: #f8f9fa; /* Light background */
@@ -8,12 +9,23 @@
     --heading-color: #212529; /* Even darker for headings */
     --shadow-light: rgba(0, 0, 0, 0.1);
     --shadow-medium: rgba(0, 0, 0, 0.2);
-    /* Removed --black-box-color as it's no longer needed */
 
     /* Specific colors for contact icons */
     --linkedin-blue: #0077B5;
     --gmail-red: #EA4335;
     --github-black: #333; /* GitHub should remain black */
+}
+
+/* Dark Mode Colors */
+body.dark-mode {
+    --primary-color: #4CAF50; /* A pleasant green for dark mode accents */
+    --secondary-color: #B0BEC5; /* Lighter grey for secondary text */
+    --background-color: #1a202c; /* Dark background */
+    --card-background: #2d3748; /* Darker cards/sections */
+    --text-color: #e2e8f0; /* Light grey for main text */
+    --heading-color: #edf2f7; /* Lighter for headings */
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -28,6 +40,7 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .container {
@@ -65,15 +78,17 @@ a {
 }
 
 a:hover {
-    color: #0056b3;
+    color: var(--primary-color); /* Maintain primary color on hover */
+    filter: brightness(0.8); /* Slightly dim for hover effect */
 }
 
 section {
-    padding: 0; /* Handled by .section-box or direct padding for contact */
+    padding: 0;
     text-align: center;
     position: relative;
     z-index: 1;
     background-color: var(--background-color);
+    transition: background-color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* --- Header & Navigation --- */
@@ -83,6 +98,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for theme change */
 }
 
 nav {
@@ -98,6 +114,7 @@ nav .logo {
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--primary-color);
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .nav-links {
@@ -113,6 +130,8 @@ nav .logo {
     font-size: 1.1rem;
     padding: 5px 0;
     position: relative;
+    color: var(--text-color); /* Ensure nav links change color */
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .nav-links a::after {
@@ -124,13 +143,69 @@ nav .logo {
     margin-top: 5px;
     right: 0;
     background: var(--primary-color);
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, background-color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .nav-links a:hover::after {
     width: 100%;
     left: 0;
     background: var(--primary-color);
+}
+
+/* Theme Switch Styles */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Adjust spacing as needed */
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 28px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
 }
 
 /* Burger Menu (for mobile) */
@@ -160,6 +235,7 @@ nav .logo {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    transition: background 0.3s ease; /* Smooth transition for theme change */
 }
 
 .hero-content .tagline {
@@ -206,17 +282,15 @@ nav .logo {
     padding: 60px 0;
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Keep transitions for subtle hover */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease; /* Smooth transition for theme change */
     max-width: 1100px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     z-index: 1;
 }
 
-/* Removed ::before pseudo-element for black background effect */
-
 .section-box:hover {
-    transform: translateY(-8px); /* Lift the main box slightly more on hover */
-    box-shadow: 0 12px 30px var(--shadow-medium); /* Deeper shadow on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px var(--shadow-medium);
 }
 
 .section-box .container {
@@ -232,12 +306,15 @@ nav .logo {
     line-height: 1.8;
     text-align: left;
     padding: 0 40px;
+    color: var(--text-color); /* Ensure text color changes */
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* Highlighted text in About Me */
 .about p .highlight-text {
     color: var(--primary-color);
     font-weight: bold;
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* --- Education Section --- */
@@ -256,12 +333,15 @@ nav .logo {
     flex-direction: column;
     justify-content: flex-start;
     height: auto;
+    color: var(--text-color); /* Ensure text color changes */
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .education-item h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: var(--primary-color);
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .education-item .institution {
@@ -269,24 +349,28 @@ nav .logo {
     color: var(--heading-color);
     margin-bottom: 5px;
     font-weight: bold;
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .education-item .dates {
     font-size: 0.95rem;
     color: var(--secondary-color);
     margin-bottom: 15px;
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .education-item .details {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-color);
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* Highlighted text in Education */
 .education-item .highlight-text {
     color: var(--primary-color);
     font-weight: bold;
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* --- Individual Box Item Styling (for Skills, Tools, Projects, Education) --- */
@@ -297,16 +381,14 @@ nav .logo {
     margin: 0;
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Keep transitions for subtle hover */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease; /* Smooth transition for theme change */
     border: 1px solid rgba(0, 0, 0, 0.05);
     z-index: 1;
 }
 
-/* Removed ::before pseudo-element for black background effect */
-
 .box-item:hover {
-    transform: translateY(-5px); /* Lift slightly on hover */
-    box-shadow: 0 8px 20px var(--shadow-medium); /* Deeper shadow */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
 }
 
 
@@ -329,6 +411,7 @@ nav .logo {
     color: var(--text-color);
     width: 100%;
     max-width: 200px;
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .skill-item .skill-icon,
@@ -341,11 +424,21 @@ nav .logo {
     transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
+body.dark-mode .skill-item .skill-icon,
+body.dark-mode .tool-item .tool-icon {
+    filter: invert(100%) grayscale(100%); /* Invert and grayscale for dark mode */
+}
+
 .skill-item:hover .skill-icon,
 .tool-item:hover .tool-icon {
     filter: grayscale(0%);
     opacity: 1;
-    transform: translateY(-5px) scale(1.05); /* Adjusted for new item box hover */
+    transform: translateY(-5px) scale(1.05);
+}
+
+body.dark-mode .skill-item:hover .skill-icon,
+body.dark-mode .tool-item:hover .tool-icon {
+    filter: invert(0%) grayscale(0%); /* Restore original colors on hover in dark mode */
 }
 
 
@@ -364,6 +457,8 @@ nav .logo {
     justify-content: space-between;
     height: 100%;
     padding: 30px;
+    color: var(--text-color); /* Ensure text color changes */
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .project-item .project-image {
@@ -379,6 +474,7 @@ nav .logo {
     font-size: 1.6rem;
     margin-bottom: 10px;
     color: var(--heading-color);
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .project-item p {
@@ -387,6 +483,7 @@ nav .logo {
     margin-bottom: 20px;
     color: var(--secondary-color);
     flex-grow: 1;
+    transition: color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .project-link {
@@ -401,15 +498,16 @@ nav .logo {
 }
 
 .project-link:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-color); /* Maintain primary color on hover */
+    filter: brightness(0.8);
 }
 
 
 /* --- Contact Section & Footer --- */
-/* Reverted contact section to normal, without .section-box styling */
 .contact {
-    background-color: var(--background-color); /* Matches body background for no box */
-    padding: 80px 20px; /* Revert to standard section padding */
+    background-color: var(--background-color);
+    padding: 80px 20px;
+    transition: background-color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .contact-links {
@@ -426,21 +524,19 @@ nav .logo {
     align-items: center;
     gap: 10px;
     font-size: 1.1rem;
-    padding: 0; /* Remove padding as it's no longer a 'box-item' */
-    border-radius: 0; /* Remove border-radius */
-    background-color: transparent; /* Transparent background */
-    box-shadow: none; /* Remove shadow */
-    position: static; /* Remove relative positioning */
-    overflow: visible; /* Remove hidden overflow */
-    z-index: auto; /* Revert z-index */
-    transition: transform 0.3s ease; /* Keep transform for lift */
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    position: static;
+    overflow: visible;
+    z-index: auto;
+    transition: transform 0.3s ease;
 }
 
-/* Removed ::before pseudo-element for contact-item black background */
-
 .contact-item:hover {
-    transform: translateY(-5px); /* Keep the subtle lift on hover */
-    box-shadow: none; /* Ensure no shadow appears on hover */
+    transform: translateY(-5px);
+    box-shadow: none;
 }
 
 .contact-item a {
@@ -464,12 +560,19 @@ nav .logo {
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+/* Invert contact icons in dark mode */
+body.dark-mode .contact-icon {
+    filter: invert(100%);
+}
+
+
 footer {
     background-color: var(--heading-color);
     color: #fff;
     text-align: center;
     padding: 20px 0;
     font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* --- Responsive Design (Media Queries) --- */
@@ -563,7 +666,7 @@ footer {
     }
 
     .contact {
-        padding: 40px 20px; /* Adjust padding for mobile contact section */
+        padding: 40px 20px;
     }
 
     .contact-links {
@@ -585,6 +688,11 @@ footer {
 
     .project-item .project-image {
         height: 150px;
+    }
+
+    .theme-switch-wrapper {
+        margin-left: auto; /* Push to the right on smaller screens */
+        margin-right: 20px;
     }
 }
 
