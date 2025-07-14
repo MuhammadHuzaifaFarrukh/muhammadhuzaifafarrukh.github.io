@@ -446,7 +446,7 @@ body.dark-mode .tool-item:hover .tool-icon {
 /* --- Projects Section --- */
 .project-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* FORCES TWO COLUMNS ON LARGER SCREENS */
     gap: 30px;
     margin-top: 40px;
 }
@@ -738,6 +738,7 @@ footer {
     }
 
     .project-list {
+        /* ENSURES A SINGLE COLUMN ON SMALLER SCREENS */
         grid-template-columns: 1fr;
     }
 
