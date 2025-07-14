@@ -1,7 +1,7 @@
 // Typewriter Effect (only runs on pages with 'typewriter-text' element)
 const typewriterText = document.getElementById('typewriter-text');
 const texts = [
-    "C++ Developer",
+    "Software Engineer",
     "Exploring AI using Python",
     "Passionate about Game Development"
     
