@@ -1,4 +1,4 @@
-// Typewriter Effect
+// Typewriter Effect (only runs on pages with 'typewriter-text' element)
 const typewriterText = document.getElementById('typewriter-text');
 const texts = [
     "C++ Developer",
@@ -38,7 +38,7 @@ function type() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (typewriterText) {
+    if (typewriterText) { // Only run if typewriterText element exists (i.e., on index.html)
         type();
     }
 });
@@ -67,7 +67,7 @@ if (burger && nav && navLinks) { // Ensure elements exist before adding listener
         burger.classList.toggle('toggle');
     });
 
-    // Close nav when a link is clicked (for single page navigation)
+    // Close nav when a link is clicked (for single page navigation or navigating between pages)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (nav.classList.contains('nav-active')) {
