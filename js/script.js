@@ -2,7 +2,7 @@
 const typewriterText = document.getElementById('typewriter-text');
 const texts = [
     "C++ Developer",
-    "Exploring AI & ML using Python",
+    "Exploring AI using Python",
     "Passionate about Game Development"
     
 ];
@@ -76,5 +76,45 @@ if (burger && nav && navLinks) { // Ensure elements exist before adding listener
                 navLinks.forEach(l => l.style.animation = ''); // Reset animation
             }
         });
+    });
+}
+
+// Dark/Light Mode Toggle
+const themeToggle = document.getElementById('checkbox');
+const body = document.body;
+
+function applyTheme(theme) {
+    if (theme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.checked = true;
+    } else {
+        body.classList.remove('dark-mode');
+        themeToggle.checked = false;
+    }
+}
+
+// Check for saved theme preference on load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // If no preference saved, check system preference
+        applyTheme('dark');
+    } else {
+        applyTheme('light');
+    }
+});
+
+// Listen for theme toggle change
+if (themeToggle) {
+    themeToggle.addEventListener('change', () => {
+        if (themeToggle.checked) {
+            applyTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            applyTheme('light');
+            localStorage.setItem('theme', 'light');
+        }
     });
 }
