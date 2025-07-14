@@ -146,7 +146,8 @@ nav .logo {
     transition: width 0.3s ease, background-color 0.3s ease; /* Smooth transition for theme change */
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active-nav::after { /* New: active state for navigation */
     width: 100%;
     left: 0;
     background: var(--primary-color);
@@ -502,6 +503,60 @@ body.dark-mode .tool-item:hover .tool-icon {
     filter: brightness(0.8);
 }
 
+/* Project Tags Container */
+.project-tags {
+    margin-top: 10px;
+    margin-bottom: 15px; /* Adjust spacing as needed */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Space between tags */
+}
+
+/* Individual Tag Style */
+.tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--card-background); /* Tag text color */
+    background-color: var(--primary-color); /* Tag background color */
+    transition: background-color 0.3s ease;
+}
+
+/* Dark mode tag colors */
+body.dark-mode .tag {
+    color: var(--background-color);
+    background-color: var(--primary-color);
+}
+
+/* New Styles for "View All Projects" and "Back to Portfolio" buttons */
+.view-all-projects, .back-to-portfolio {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px; /* Add some space above the button */
+}
+
+.primary-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 7px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none; /* Remove underline */
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.primary-button:hover {
+    background-color: var(--primary-color); /* Maintain primary color on hover */
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--shadow-medium);
+}
+
 
 /* --- Contact Section & Footer --- */
 .contact {
@@ -693,6 +748,12 @@ footer {
     .theme-switch-wrapper {
         margin-left: auto; /* Push to the right on smaller screens */
         margin-right: 20px;
+    }
+
+    /* New button responsive styles */
+    .primary-button {
+        padding: 10px 20px;
+        font-size: 1rem;
     }
 }
 
