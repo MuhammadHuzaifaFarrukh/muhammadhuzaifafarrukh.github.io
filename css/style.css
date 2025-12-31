@@ -621,13 +621,17 @@ body.dark-mode .contact-icon {
 }
 
 
-footer {
-    background-color: var(--heading-color);
-    color: #fff;
+/* This targets the copyright text specifically */
+footer p {
+    color: var(--text-color); /* Defaults to dark grey in light mode */
     text-align: center;
     padding: 20px 0;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+    transition: color 0.3s ease;
+}
+
+/* This forces the text to be light/white when Dark Mode is active */
+body.dark-mode footer p {
+    color: #ffffff; /* Pure white for maximum visibility */
 }
 
 /* --- Responsive Design (Media Queries) --- */
@@ -768,3 +772,4 @@ footer {
 .toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
