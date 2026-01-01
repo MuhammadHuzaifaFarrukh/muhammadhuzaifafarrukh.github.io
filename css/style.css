@@ -616,21 +616,19 @@ body.dark-mode .tag {
 }
 
 /* Invert contact icons in dark mode */
-body.dark-mode .contact-icon 
-{
+body.dark-mode .contact-icon {
     filter: invert(100%);
 }
 
 
-/* This targets the copyright text specifically */
-footer p 
-{
-    color: var(--text-color); /* Defaults to dark grey in light mode */
+footer {
+    background-color: var(--heading-color);
+    color: #fff;
     text-align: center;
     padding: 20px 0;
-    transition: color 0.3s ease;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
-
 
 /* --- Responsive Design (Media Queries) --- */
 @media (max-width: 768px) {
@@ -771,6 +769,6 @@ footer p
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-
-
-
+body.dark-mode footer p {
+    color: #1a202c !important;            /* Ensures the paragraph text matches */
+}
