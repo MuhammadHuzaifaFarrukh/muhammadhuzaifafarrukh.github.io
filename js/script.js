@@ -118,12 +118,12 @@ if (themeToggle) {
         }
     });
 }
-
-// Dynamic Footer Year
+// Dynamic Year for Footer
 document.addEventListener('DOMContentLoaded', () => {
-    const yearElement = document.getElementById('year');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
+    
+    // ... your existing code (typewriter, theme toggle, etc.)
 });
-
